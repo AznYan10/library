@@ -1,11 +1,28 @@
+:root {
+    --blue: #247291;
+    --yellow: #f8da5b;
+    --white1: #d8dbce;
+    --white2: #f5f9ee;
+}
+
 .header {
     text-align: center;
     border-bottom: solid;
     margin-bottom: 10px;
+    background-color: var(--white1);
+    color: var(--yellow)
 }
+
+.header > h1 {
+    color: var(--blue);
+}
+
 .container {
     display: grid;
     grid-template-columns: 1fr 4fr;
+    background-color: var(--white2);
+    color: var(--blue);
+    background-color: var(--white2);
 }
 
 .sidebar {
@@ -15,6 +32,11 @@
     border: solid;
     justify-content: center;
     align-items: center;
+    color: var(--yellow);
+}
+
+.sidebar > h3 {
+    color: var(--blue);
 }
 
 .main-content {
@@ -26,8 +48,8 @@
 
 .main-content > div {
     border: solid;
-    border-color: black;
-    width: 200px;
+    border-color: var(--yellow);
+    width: 350px;
     height: 200px;
 }
 
@@ -45,8 +67,8 @@
 }
 
 .add:hover {
-    background-color: rgba(0, 0, 0, 0.25);
-    color: rgba(0, 0, 0, 0.5);
+    background-color: var(--white1);
+    color: var(--yellow);
     cursor: pointer;
 }
 
@@ -54,12 +76,29 @@
     background-color: white;
 }
 
-.edit-remove {
+.read-remove {
     display: flex;
     justify-content: space-between;
 }
 
-.edit:hover, .remove:hover{
+.read:hover, .remove:hover{
     cursor: pointer;
     font-weight: bold;
+}
+
+.add-form {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    top: 33%;
+    left: 33%;
+    border: solid;
+    border-color: var(--blue);
+    color: var(--yellow);
+    background-color: var(--white2);
+    width: 400px;
+    height: 200px;
+    font-size: 25px;
 }
