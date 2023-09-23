@@ -1,5 +1,8 @@
 // All elements
+const mainContent = document.querySelector('.main-content');
 const add = document.querySelector('.add');
+const addForm = document.querySelector('.add-form');
+const addButton = document.querySelector('.add-button');
 
 // Array for books
 const myLibrary = [];
@@ -13,12 +16,18 @@ function Book(title, author, page) {
 
 // Creating book object
 function addBookToLibrary() {
-    let title = prompt("Title: ");
-    let author = prompt("Author: ");
-    let page = prompt("Page: ");
+    addForm.style.display = 'none';
+    mainContent.style.display = 'grid';
 
     const book1 = new Book(title, author, page);
 }
 
+// When + is clicked
+function formDisplay() {
+    addForm.style.display = 'flex';
+    mainContent.style.display = 'none';
+}
+
 // Event listners 
-add.addEventListener('click', addBookToLibrary);
+add.addEventListener('click', formDisplay);
+addButton.addEventListener('click', addBookToLibrary);
