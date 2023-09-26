@@ -8,18 +8,45 @@ const addButton = document.querySelector('.add-button');
 const myLibrary = [];
 
 // Constructor for book
-function Book(title, author, page) {
+function Book(title, author, pages, read) {
     this.title = title;
     this.author = author;
-    this.page = page;
+    this.pages = pages;
+    this.read = read;
 }
+
+//UI Constructor
+function UI(){}
 
 // Creating book object
 function addBookToLibrary() {
+    const title = document.querySelector('#title').value;
+    const author = document.querySelector('#author').value;
+    const pages = document.querySelector('#pages').value;
+    const read = document.querySelector('#read').checked;
+
+    console.log(newBook.title);
+
+    const newBook = new Book(title, author, pages, read);
+    myLibrary.push(newBook);
+
     addForm.style.display = 'none';
     mainContent.style.display = 'grid';
 
-    const book1 = new Book(title, author, page);
+    // Create elements to display the new book
+    const bookContainer = document.createElement('div');
+    bookContainer.classList.add('books');
+    bookContainer.innerHTML = `
+        <h3>Title: ${title}</h3>
+        <h3>Author: ${author}</h3>
+        <h3>Pages: ${pages}</h3>
+        <div class="read-remove">
+            <span class="read">${read ? 'Read' : 'Unread'}</span>
+            <span class="remove">Remove</span>
+        </div>
+    `;
+
+    mainContent.appendChild(bookContainer);
 }
 
 // When + is clicked
