@@ -22,7 +22,7 @@ class UI {
                 title: 'Endgame',
                 author: 'James Frey',
                 pages: '496',
-                read: false,
+                read: true,
             }
         ];
         const books = StoredBooks;
@@ -32,6 +32,7 @@ class UI {
     // Creating elements for books
     static addBookToLibrary(book) {
         const bookContainer = document.createElement('div');
+        bookContainer.classList = 'books';
 
         bookContainer.innerHTML = `
         <h3>Title: ${book.title}</h3>
@@ -51,14 +52,28 @@ class UI {
 document.addEventListener('DOMContentLoaded', UI.displayBooks);
 
 // Add Book
+addForm.addEventListener('submit', (e) => {
+    e.preventDefault();
 
+    // Get form values
+    const title = document.querySelector('#title').value;
+    const author = document.querySelector('#author').value;
+    const pages = document.querySelector('#pages').value;
+    const read = document.querySelector('#read').checked;
+
+    // Validate 
+    if (title === '' || author === '' || pages === '') {
+        alert('Please fill in all fields');
+    } else {
+        // Instatiate book
+        const book = new Book(title, author, pages, read);
+
+        // Adde book
+        UI.addBookToLibrary(book);
+    }
+});
 
 // When + is clicked
-function formDisplay() {
+add.addEventListener('click', (e) => {
     addForm.style.display = 'flex';
-    mainContent.style.display = 'none';
-}
-
-// Event listners 
-add.addEventListener('click', formDisplay);
-addButton.addEventListener('submit', addBook);
+});
