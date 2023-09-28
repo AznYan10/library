@@ -22,50 +22,36 @@ class UI {
                 title: 'Endgame',
                 author: 'James Frey',
                 pages: '496',
-                read: checked,
+                read: false,
             }
         ];
         const books = StoredBooks;
         books.forEach((book) => UI.addBookToLibrary(book));
     }
-}
+    
+    // Creating elements for books
+    static addBookToLibrary(book) {
+        const bookContainer = document.createElement('div');
 
-// Creating elements for books
-
-
-// Creating book object
-function addBook() {
-    const title = document.querySelector('#title').value;
-    const author = document.querySelector('#author').value;
-    const pages = document.querySelector('#pages').value;
-    const read = document.querySelector('#read').checked;
-    // test
-    console.log(title, author, pages, read);
-
-    const newBook = new Book(title, author, pages, read);
-    // myLibrary.push(newBook);
-
-    const ui = new UI();
-    console.log(ui);
-
-    addForm.style.display = 'none';
-    mainContent.style.display = 'grid';
-
-    // Create elements to display the new book
-    const bookContainer = document.createElement('div');
-    bookContainer.classList.add('books');
-    bookContainer.innerHTML = `
-        <h3>Title: ${title}</h3>
-        <h3>Author: ${author}</h3>
-        <h3>Pages: ${pages}</h3>
+        bookContainer.innerHTML = `
+        <h3>Title: ${book.title}</h3>
+        <h3>Author: ${book.author}</h3>
+        <h3>Pages: ${book.pages}</h3>
         <div class="read-remove">
-            <span class="read">${read ? 'Read' : 'Unread'}</span>
+            <span class="read">${book.read ? 'Read' : 'Unread'}</span>
             <span class="remove">Remove</span>
         </div>
-    `;
+        `;
 
-    mainContent.appendChild(bookContainer);
+        mainContent.appendChild(bookContainer);
+    }
 }
+
+// Display book
+document.addEventListener('DOMContentLoaded', UI.displayBooks);
+
+// Add Book
+
 
 // When + is clicked
 function formDisplay() {
@@ -75,4 +61,4 @@ function formDisplay() {
 
 // Event listners 
 add.addEventListener('click', formDisplay);
-addButton.addEventListener('submit', addBook());
+addButton.addEventListener('submit', addBook);
