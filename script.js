@@ -18,15 +18,7 @@ class Book {
 //UI Constructor, handles UI tasks 
 class UI {
     static displayBooks() {
-        const StoredBooks = [
-            {
-                title: 'Endgame',
-                author: 'James Frey',
-                pages: '496',
-                read: true,
-            }
-        ];
-        const books = StoredBooks;
+        const books = Store.getBooks();
         books.forEach((book) => UI.addBookToLibrary(book));
     }
     
@@ -36,9 +28,9 @@ class UI {
         bookContainer.classList = 'books';
 
         bookContainer.innerHTML = `
-        <h3>Title: ${book.title}</h3>
-        <h3>Author: ${book.author}</h3>
-        <h3>Pages: ${book.pages}</h3>
+        <h3>${book.title}</h3>
+        <h3>${book.author}</h3>
+        <h3>${book.pages}</h3>
         <div class="read-remove">
             <span class="read">${book.read ? 'Read' : 'Unread'}</span>
             <span class="remove">Remove</span>
@@ -80,7 +72,7 @@ class Store {
     static addBook(book) {
         const books = Store.getBooks();
         books.push(book);
-        localStorage.setItem('book', JSON.stringify(books));
+        localStorage.setItem('books', JSON.stringify(books));
     }
 
     static removeBook(title) {
@@ -116,6 +108,7 @@ addForm.addEventListener('submit', (e) => {
 
         // Adde book
         UI.addBookToLibrary(book);
+        Store.addBook(book);
         UI.clearFields();
     }
 });
@@ -123,6 +116,8 @@ addForm.addEventListener('submit', (e) => {
 // Remove book
 mainContent.addEventListener('click', (e) => {
     UI.deleteBook(e.target);
+    Store.removeBook(e.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.textContent);
+    console.log(e.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.textContent);
 });
 
 // When + is clicked
