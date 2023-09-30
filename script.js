@@ -64,6 +64,36 @@ class UI {
     }
 }
 
+// Store class for handling storage
+class Store {
+    static getBooks() {
+        let books;
+        if (localStorage.getItem('books') === null) {
+            books = [];
+        } else {
+            books = JSON.parse(localStorage.getItem('books'));
+        }
+
+        return books;
+    }
+
+    static addBook(book) {
+        const books = Store.getBooks();
+        books.push(book);
+        localStorage.setItem('book', JSON.stringify(books));
+    }
+
+    static removeBook(title) {
+        const books = Store.getBooks();
+        books.forEach((book, index) => {
+            if (book.title === title) {
+                books.splice(index, 1);
+            }
+        });
+        localStorage.setItem('books', JSON.stringify(books));
+    }
+}
+
 // Display book
 document.addEventListener('DOMContentLoaded', UI.displayBooks);
 
