@@ -1,3 +1,13 @@
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    width: 100%;
+    background-color: var(--white2);
+}
+
 :root {
     --blue: #247291;
     --yellow: #f8da5b;
@@ -6,7 +16,11 @@
 }
 
 .header {
-    text-align: center;
+    position: relative;
+    top: -22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-bottom: solid;
     margin-bottom: 10px;
     background-color: var(--white1);
