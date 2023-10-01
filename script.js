@@ -1,9 +1,12 @@
 // All elements
 const mainContent = document.querySelector('.main-content');
 const add = document.querySelector('.add');
+const readBtn = document.querySelector('#read');
+const read = document.querySelector('.read');
 const removeBtn = document.querySelector('.remove');
 const addForm = document.querySelector('.add-form');
 const addButton = document.querySelector('.add-button');
+const closeButton = document.querySelector('.close-button');
 
 // Constructor for book to represent the book
 class Book {
@@ -117,10 +120,24 @@ addForm.addEventListener('submit', (e) => {
 mainContent.addEventListener('click', (e) => {
     UI.deleteBook(e.target);
     Store.removeBook(e.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.textContent);
-    console.log(e.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.textContent);
 });
 
 // When + is clicked
 add.addEventListener('click', (e) => {
     addForm.style.display = 'flex';
+});
+
+// Event listner when read button is clicked
+read.addEventListener('click', (e) => {
+    if (e.target.textContent === 'Read') {
+        e.target.textContent = 'Unread';
+    } else {
+        e.target.textContent = 'Read';
+    }
+});
+
+// Event listner when close button is clicked 
+closeButton.addEventListener('click', (e) => {
+    addForm.style.display = 'none';
+    UI.clearFields();
 });
