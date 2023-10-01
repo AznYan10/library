@@ -23,6 +23,7 @@ class UI {
     static displayBooks() {
         const books = Store.getBooks();
         books.forEach((book) => UI.addBookToLibrary(book));
+        UI.updateTotalBooksCount();
     }
     
     // Creating elements for books
@@ -41,6 +42,7 @@ class UI {
         `;
 
         mainContent.appendChild(bookContainer);
+        UI.updateTotalBooksCount();
     }
 
     // Clear fields after book is added
@@ -56,6 +58,14 @@ class UI {
         if (el.classList.contains('remove')) {
             el.parentElement.parentElement.remove();
         }
+        UI.updateTotalBooksCount();
+    }
+
+    // Counts books added 
+    static updateTotalBooksCount() {
+        const totalBooksCountElement = document.getElementById('totalBooks');
+        const books = document.querySelectorAll('.books');
+        totalBooksCountElement.textContent = `Total Books: ${books.length}`;
     }
 }
 
