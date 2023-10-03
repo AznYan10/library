@@ -1,8 +1,8 @@
 // All elements
 const mainContent = document.querySelector('.main-content');
 const add = document.querySelector('.add');
-const readBtn = document.querySelector('#read');
-const read = document.querySelector('.read');
+const readBtn = document.querySelector('.read');
+const books = document.querySelector('.books');
 const removeBtn = document.querySelector('.remove');
 const addForm = document.querySelector('.add-form');
 const addButton = document.querySelector('.add-button');
@@ -42,6 +42,13 @@ class UI {
         `;
 
         mainContent.appendChild(bookContainer);
+
+        const readBtn = bookContainer.querySelector('.read');
+        const removeBtn = bookContainer.querySelector('.remove');
+
+        readBtn.addEventListener('click', handleButtonClick);
+        removeBtn.addEventListener('click', handleButtonClick);
+
         UI.updateTotalBooksCount();
     }
 
@@ -126,24 +133,9 @@ addForm.addEventListener('submit', (e) => {
     }
 });
 
-// Remove book
-mainContent.addEventListener('click', (e) => {
-    UI.deleteBook(e.target);
-    Store.removeBook(e.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.textContent);
-});
-
 // When + is clicked
 add.addEventListener('click', (e) => {
     addForm.style.display = 'flex';
-});
-
-// Event listner when read button is clicked
-read.addEventListener('click', (e) => {
-    if (e.target.textContent === 'Read') {
-        e.target.textContent = 'Unread';
-    } else {
-        e.target.textContent = 'Read';
-    }
 });
 
 // Event listner when close button is clicked 
@@ -151,3 +143,18 @@ closeButton.addEventListener('click', (e) => {
     addForm.style.display = 'none';
     UI.clearFields();
 });
+
+// When read or remove button clicked 
+readBtn.addEventListener('click', handleButtonClick);
+removeBtn.addEventListener('click', handleButtonClick);
+
+// Function on when read or remove button is clicked
+function handleButtonClick(e) {
+    if (e.target.classList.contains('read')) {
+        console.log(e.target.textContent);
+        e.target.textContent = (e.target.textContent === 'Read') ? 'Unread' : 'Read';
+    } else if (e.target.classList.contains('remove')) {
+        UI.deleteBook(e.target);
+        Store.removeBook(e.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.textContent);
+    }
+}
