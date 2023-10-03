@@ -7,6 +7,7 @@ const removeBtn = document.querySelector('.remove');
 const addForm = document.querySelector('.add-form');
 const addButton = document.querySelector('.add-button');
 const closeButton = document.querySelector('.close-button');
+const totalCompletedBooks = document.getElementById('totalCompletedBooks');
 
 // Constructor for book to represent the book
 class Book {
@@ -24,6 +25,7 @@ class UI {
         const books = Store.getBooks();
         books.forEach((book) => UI.addBookToLibrary(book));
         UI.updateTotalBooksCount();
+        UI.updateTotalCompletedBooksCount();
     }
     
     // Creating elements for books
@@ -50,6 +52,7 @@ class UI {
         removeBtn.addEventListener('click', handleButtonClick);
 
         UI.updateTotalBooksCount();
+        UI.updateTotalCompletedBooksCount();
     }
 
     // Clear fields after book is added
@@ -66,6 +69,7 @@ class UI {
             el.parentElement.parentElement.remove();
         }
         UI.updateTotalBooksCount();
+        UI.updateTotalCompletedBooksCount();
     }
 
     // Counts books added 
@@ -73,6 +77,20 @@ class UI {
         const totalBooksCountElement = document.getElementById('totalBooks');
         const books = document.querySelectorAll('.books');
         totalBooksCountElement.textContent = `Total Books: ${books.length}`;
+    }
+
+    // Count total completed books 
+    static updateTotalCompletedBooksCount() {
+        const completedBooks = document.querySelectorAll('.read');
+        
+        let total = 0;
+        completedBooks.forEach(book => {
+            if (book.textContent === 'Read') {
+                total++;
+            }
+        });
+
+        totalCompletedBooks.textContent = `Total Completed Books: ${total}`;
     }
 }
 
@@ -151,10 +169,11 @@ removeBtn.addEventListener('click', handleButtonClick);
 // Function on when read or remove button is clicked
 function handleButtonClick(e) {
     if (e.target.classList.contains('read')) {
-        console.log(e.target.textContent);
         e.target.textContent = (e.target.textContent === 'Read') ? 'Unread' : 'Read';
+        UI.updateTotalCompletedBooksCount();
     } else if (e.target.classList.contains('remove')) {
         UI.deleteBook(e.target);
         Store.removeBook(e.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.textContent);
+        UI.updateTotalCompletedBooksCount();
     }
 }
