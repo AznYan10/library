@@ -56,6 +56,10 @@ body {
     color: var(--yellow);
 }
 
+.sidebar:hover {
+    background-color: var(--white1);
+}
+
 .sidebar > h3 {
     color: var(--blue);
 }
@@ -78,6 +82,10 @@ body {
     display: grid;
     justify-content: center;
     align-items: center;
+}
+
+.books:hover {
+    background-color: var(--white1);
 }
 
 .add {
