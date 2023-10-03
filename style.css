@@ -99,7 +99,7 @@ body {
 
 .read-remove {
     display: flex;
-    justify-content: space-between;
+    gap: 100px;
 }
 
 .read:hover, .remove:hover{
