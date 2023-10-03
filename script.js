@@ -122,6 +122,16 @@ class Store {
         });
         localStorage.setItem('books', JSON.stringify(books));
     }
+
+    static readBook(title) {
+        let books = Store.getBooks();
+        books.forEach(book => {
+            if (book.title === title) {
+                book.read = !book.read;
+            }
+        });
+        localStorage.setItem('books', JSON.stringify(books));
+    }
 }
 
 // Display book
@@ -170,6 +180,8 @@ removeBtn.addEventListener('click', handleButtonClick);
 function handleButtonClick(e) {
     if (e.target.classList.contains('read')) {
         e.target.textContent = (e.target.textContent === 'Read') ? 'Unread' : 'Read';
+        const bookTitle = e.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.textContent;
+        Store.readBook(bookTitle);
         UI.updateTotalCompletedBooksCount();
     } else if (e.target.classList.contains('remove')) {
         UI.deleteBook(e.target);
