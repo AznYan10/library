@@ -29,7 +29,16 @@ class UI {
     }
     
     // Creating elements for books
-    static addBookToLibrary(book) {
+    static addBookToLibrary(book, fromForm = false) {
+        const books = Store.getBooks();
+        
+        // Checks if title already exist 
+        if (fromForm && books.some(existingBook => existingBook.title === book.title)) {
+            alert(`The Book title "${book.title}" already exist`);
+            UI.deleteBook(book);
+            return;
+        }
+                
         const bookContainer = document.createElement('div');
         bookContainer.classList = 'books';
 
@@ -154,8 +163,8 @@ addForm.addEventListener('submit', (e) => {
         // Instatiate book
         const book = new Book(title, author, pages, read);
 
-        // Adde book
-        UI.addBookToLibrary(book);
+        // Add book
+        UI.addBookToLibrary(book, true);
         Store.addBook(book);
         UI.clearFields();
     }
