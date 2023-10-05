@@ -33,20 +33,23 @@
     </div>
     <form class="add-form">
         <div>
-            <label for="title"></label>
-            <input id="title" type="text" placeholder="Title" />
+            <label for="title">Title</label>
+            <input id="title" type="text"/>
         </div>
         <div>
-            <label for="title"></label>
-            <input id="author" type="text" placeholder="Author" />
+            <label for="title">Author</label>
+            <input id="author" type="text"/>
         </div>
         <div>
-            <label for="title"></label>
-            <input id="pages" type="text" placeholder="100">    
+            <label for="title">Pages</label>
+            <input id="pages" type="text">    
         </div>
-        <div>
-            <label for="title"></label>
-            <input id="read" type="checkbox" value="true"/> Read
+        <div class="read-slider">
+            <span>Read</span>
+            <label class="switch">
+                <input id="read" type="checkbox"/>
+                <span class="slider round"></span>
+            </label>
         </div>
         <div>
             <button class="add-button" type="button submit">Add</button>

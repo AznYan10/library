@@ -142,20 +142,77 @@ body {
 }
 
 .add-form {
-    position: absolute;
+    position: fixed;
     display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    top: 33%;
-    left: 33%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     border: solid;
     border-color: var(--blue);
-    color: var(--yellow);
+    color: var(--blue);
     background-color: var(--white1);
     width: 400px;
     height: 200px;
     font-size: 25px;
+    margin: 0;
+    padding: 20px;
+}
+
+.read-slider {
+    display: flex;
+    align-items: center;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: var(--blue);
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #2196f3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
 }
 
 .add-button, .close-button {
@@ -166,6 +223,7 @@ body {
     font-size: 20px;
     cursor: pointer;
     margin-right: 10px;
+    width: 150px;
 }
 
 .add-button:hover, .close-button:hover {

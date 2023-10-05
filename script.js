@@ -198,3 +198,16 @@ function handleButtonClick(e) {
         UI.updateTotalCompletedBooksCount();
     }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    let readCheckbox = document.querySelector('#read');
+    let readLabel = document.querySelector('.read-slider span');
+
+    readCheckbox.addEventListener('change', function() {
+        if (this.checked) {
+            readLabel.textContent = 'Read';
+        } else {
+            readLabel.textContent = 'Unread';
+        }
+    });
+});
