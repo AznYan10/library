@@ -3,7 +3,7 @@ const mainContent = document.querySelector('.main-content');
 const add = document.querySelector('.add');
 const readBtn = document.querySelector('.read');
 const books = document.querySelector('.books');
-const removeBtn = document.querySelector('.remove');
+const removeBtns = document.querySelectorAll('.remove');
 const addForm = document.querySelector('.add-form');
 const addButton = document.querySelector('.add-button');
 const closeButton = document.querySelector('.close-button');
@@ -27,7 +27,7 @@ class UI {
         UI.updateTotalBooksCount();
         UI.updateTotalCompletedBooksCount();
     }
-    
+
     // Creating elements for books
     static addBookToLibrary(book, fromForm = false) {
         const books = Store.getBooks();
@@ -187,33 +187,31 @@ closeButton.addEventListener('click', (e) => {
     UI.clearFields();
 });
 
-// When read or remove button clicked 
-readBtn.addEventListener('click', handleButtonClick);
-removeBtn.addEventListener('click', handleButtonClick);
+// When read slider is clicked
+const readSliders = document.querySelectorAll('.read .slider');
+readSliders.forEach(slider => {
+    slider.addEventListener('click', handleButtonClick);
+});
+
+// When remove button clicked 
+removeBtns.forEach(removeBtn => {
+    removeBtn.addEventListener('click', handleButtonClick);
+});
 
 // Function on when read or remove button is clicked
 function handleButtonClick(e) {
-    if (e.target.classList.contains('read')) {
-        e.target.textContent = (e.target.textContent === 'Read') ? 'Unread' : 'Read';
-        const bookTitle = e.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.textContent;
-        Store.readBook(bookTitle);
-        UI.updateTotalCompletedBooksCount();
+    if (e.target.classList.contains('slider')) {
+        const bookContainer = e.target.closest('.books');
+        const readStatus = e.target.previousElementSibling.checked;
+
+        if (readStatus) {
+            totalCompletedBooks.textContent = `Total Completed Books: ${parseInt(totalCompletedBooks.textContent.split(': ')[1]) + 1}`;
+        } else {
+            totalCompletedBooks.textContent = `Total Completed Books: ${parseInt(totalCompletedBooks.textContent.split(': ')[1]) - 1}`;
+        }
     } else if (e.target.classList.contains('remove')) {
         UI.deleteBook(e.target);
         Store.removeBook(e.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.textContent);
         UI.updateTotalCompletedBooksCount();
     }
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-    let readCheckbox = document.querySelector('#read');
-    let readLabel = document.querySelector('.read-slider span');
-
-    readCheckbox.addEventListener('change', function() {
-        if (this.checked) {
-            readLabel.textContent = 'Read';
-        } else {
-            readLabel.textContent = 'Unread';
-        }
-    });
-});
