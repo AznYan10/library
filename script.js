@@ -43,12 +43,18 @@ class UI {
         bookContainer.classList = 'books';
 
         bookContainer.innerHTML = `
-        <h3>${book.title}</h3>
-        <h3>${book.author}</h3>
-        <h3>${book.pages}</h3>
+        <h3>Title: ${book.title}</h3>
+        <h3>Author: ${book.author}</h3>
+        <h3>Pages: ${book.pages}</h3>
         <div class="read-remove">
-            <span class="read">${book.read ? 'Read' : 'Unread'}</span>
-            <span class="remove">Remove</span>
+            <button class="remove">&#10006;</button>
+            <div class="read">
+                <span>Read</span>
+                <label class="switch">
+                    <input type="checkbox" class="readCheckbox">
+                    <span class="slider round"></span>
+                </label>
+            </div>
         </div>
         `;
 
