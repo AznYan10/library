@@ -17,15 +17,18 @@ body {
 
 .header {
     position: relative;
-    top: -22px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-bottom: solid;
     margin-bottom: 10px;
     background-color: var(--white1);
-    color: var(--yellow)
+    color: var(--yellow);
+    padding: 10px 0; 
+    border-radius: 10px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    margin-bottom: 20px; 
 }
+
 
 .header > h1 {
     color: var(--blue);
@@ -42,19 +45,26 @@ body {
 .left-main {
     display: flex;
     align-items: center;
+    padding: 20px; 
+    border-radius: 10px; 
+    margin-bottom: 20px; 
 }
 
 .sidebar {
     height: 250px;
     width: 300px;
-    position: sticky;
+    position: fixed;
     display: flex;
     flex-direction: column;
-    border: solid;
-    justify-content:space-around;
+    justify-content: space-around;
     align-items: center;
     color: var(--yellow);
+    background-color: var(--white1); 
+    border-radius: 10px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    margin-bottom: 20px; 
 }
+
 
 .sidebar:hover {
     background-color: var(--white1);
@@ -67,15 +77,19 @@ body {
 .main-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    margin-left: 30px;
     gap: 25px;
+    padding: 20px;
 }
 
 .main-content > div {
     border: solid;
     border-color: var(--yellow);
-    width: 350px;
-    height: 200px;
+    min-height: 200px; 
+    background-color: var(--white2); 
+    border-radius: 10px; 
+    padding: 20px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    transition: background-color 0.3s; 
 }
 
 .books {
@@ -84,12 +98,17 @@ body {
     align-items: center;
     text-align: center;
     position: relative;
-    padding-bottom: 50px;
+    padding: 20px; 
+    background-color: var(--white2); 
+    border-radius: 10px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    transition: background-color 0.3s; 
 }
 
 .books:hover {
-    background-color: var(--white1);
+    background-color: var(--white1); 
 }
+
 
 .add {
     display: flex;
@@ -155,10 +174,32 @@ body {
     color: var(--blue);
     background-color: var(--white1);
     width: 400px;
-    height: 200px;
-    font-size: 25px;
+    height: 300px;
+    font-size: 20px;
     margin: 0;
     padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.add-form div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.add-form label {
+    width: 80px;
+    font-weight: bold;
+}
+
+.add-form input {
+    flex-grow: 1;
+    margin-right: 10px;
+    padding: 8px;
+    border: 1px solid var(--blue);
+    border-radius: 5px;
+    font-size: 16px;
 }
 
 .read-slider {
@@ -175,8 +216,8 @@ body {
 
 .switch input {
     opacity: 0;
-    width: 0;
-    height: 0;
+    width: 60px;
+    height: 34px;
 }
 
 .slider {
@@ -190,6 +231,7 @@ body {
     -webkit-transition: 0.4s;
     transition: 0.4s;
     border-radius: 34px;
+    width: 60px;
 }
 
 .slider:before {
@@ -215,21 +257,43 @@ input:checked + .slider:before {
     transform: translateX(26px);
 }
 
-.add-button, .close-button {
+.add-button,
+.close-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.add-button {
     background-color: var(--blue);
     color: var(--white2);
-    border: none;
-    padding: 10px 20px;
-    font-size: 20px;
-    cursor: pointer;
     margin-right: 10px;
-    width: 150px;
 }
 
-.add-button:hover, .close-button:hover {
-    background-color: var(--yellow);;
+.add-button:hover {
+    background-color: var(--yellow);
 }
 
-.add-button:active, .close-button:active {
+.add-button:active {
     transform: translateY(2px);
+    background-color: var(--white2);
+    color: var(--blue);
+}
+
+.close-button {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    font-size: 24px;
+    background-color: #ff5c5c;
+    color: var(--blue);
+    border: none;
+    border-radius: 5px;
+}
+
+.close-button:hover {
+    background-color: var(--blue);
+    color: var(--white2);
 }
