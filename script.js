@@ -156,7 +156,13 @@ addForm.addEventListener('submit', (e) => {
     const pages = document.querySelector('#pages').value;
     const read = document.querySelector('#read').checked;
 
-    // Validate 
+    // Validate input for pages are numbers 
+    if (!/^\d+$/.test(pages)) {
+        alert('Please enter a valid number for');
+        return;
+    }
+
+    // Validate if empty
     if (title === '' || author === '' || pages === '') {
         alert('Please fill in all fields');
     } else {
