@@ -15,6 +15,12 @@ body {
     --white2: #f5f9ee;
 }
 
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+}
+
 .header {
     position: relative;
     display: flex;
@@ -370,4 +376,21 @@ input:checked + .slider:before {
     transform: translateY(2px);
     background-color: var(--white2);
     color: var(--blue);
+}
+
+.footer {
+    background-color: var(--white1);
+    color: var(--blue);
+    text-align: center;
+    padding: 20px 0;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 16px;
 }

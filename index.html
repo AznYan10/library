@@ -8,45 +8,54 @@
     <title>Library</title>
 </head>
 <body>
-    <div class="header">
-        <h1>Library</h1>
-    </div>
-    <div class="container">
-        <div class="left-main">
-            <div class="sidebar">
-                <h3 id="totalBooks">Total Books: </h3>
-                <h3 id="totalCompletedBooks">Total Books Completed: </h3>
-                <div class="add">+ Add Book</div>
+    <div class="wrapper">
+        <div class="header">
+            <h1>Library</h1>
+        </div>
+        <div class="container">
+            <div class="left-main">
+                <div class="sidebar">
+                    <h3 id="totalBooks">Total Books: </h3>
+                    <h3 id="totalCompletedBooks">Total Books Completed: </h3>
+                    <div class="add">+ Add Book</div>
+                </div>
+            </div>
+            <div class="main-content">          
             </div>
         </div>
-        <div class="main-content">          
-        </div>
+        <form class="add-form">
+            <div>
+                <label for="title">Title</label>
+                <input id="title" type="text"/>
+            </div>
+            <div>
+                <label for="title">Author</label>
+                <input id="author" type="text"/>
+            </div>
+            <div>
+                <label for="pages">Pages</label>
+                <input id="pages" type="text" pattern="\d*">    
+            </div>
+            <div class="read-slider">
+                <span>Read</span>
+                <label class="switch">
+                    <input id="read" type="checkbox"/>
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <div>
+                <button class="add-button" type="button submit">Add</button>
+                <button class="close-button" type="button">&#10006;</button> 
+            </div>
+        </form>
     </div>
-    <form class="add-form">
-        <div>
-            <label for="title">Title</label>
-            <input id="title" type="text"/>
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2023 Library</p>
+            <p>By YanDev</p>
         </div>
-        <div>
-            <label for="title">Author</label>
-            <input id="author" type="text"/>
-        </div>
-        <div>
-            <label for="pages">Pages</label>
-            <input id="pages" type="text" pattern="\d*">    
-        </div>
-        <div class="read-slider">
-            <span>Read</span>
-            <label class="switch">
-                <input id="read" type="checkbox"/>
-                <span class="slider round"></span>
-            </label>
-        </div>
-        <div>
-            <button class="add-button" type="button submit">Add</button>
-            <button class="close-button" type="button">&#10006;</button> 
-        </div>
-    </form>
+    </footer>
 </body>
+
 <script src="script.js"></script>
 </html>
