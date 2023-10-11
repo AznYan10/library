@@ -32,7 +32,7 @@ class UI {
         
         // Checks if title already exist 
         if (fromForm && books.some(existingBook => existingBook.title === book.title)) {
-            alert(`The Book title "${book.title}" already exist`);
+            alert(`The Book title "${book.title}" already exists`);
             UI.deleteBook(book);
             return;
         }
@@ -46,26 +46,26 @@ class UI {
         <h3>Pages: ${book.pages}</h3>
         <div class="read-remove">
             <button class="remove">&#10006;</button>
-            <button class="read">Read</button>
+            <button class="read">${book.read ? 'Read' : 'Not Read'}</button>
         </div>
         `;
-
+    
         mainContent.appendChild(bookContainer);
-
+    
         const readBtn = bookContainer.querySelector('.read');
         const removeBtn = bookContainer.querySelector('.remove');
-        const readState = localStorage.getItem(book.title)
-
+        const readState = localStorage.getItem(book.title);
+    
         removeBtn.addEventListener('click', handleDelBtn);
         readBtn.addEventListener('click', handleReadBtn);
-
+    
         if(readState) {
             readBtn.textContent = readState;
         }
-
+    
         UI.updateTotalBooksCount();
         UI.updateTotalCompletedBooksCount();
-    }
+    }    
 
     // Clear fields after book is added
     static clearFields () {

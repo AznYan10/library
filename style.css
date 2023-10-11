@@ -305,6 +305,13 @@ input:checked + .slider:before {
     background-color: var(--blue);
     color: var(--white2);
     margin-right: 10px;
+    padding: 0;
+    font-size: 16px;
+    border-radius: 34px; 
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    width: 100px;
+    height: 34px; 
 }
 
 .add-button:hover {
@@ -331,4 +338,36 @@ input:checked + .slider:before {
 .close-button:hover {
     background-color: var(--blue);
     color: var(--white2);
+}
+
+.read {
+    display: flex;
+    align-items: center;
+    position: relative;
+    background-color: var(--blue);
+    color: var(--white2);
+    border: none;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.read span {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.read:hover {
+    background-color: var(--yellow);
+}
+
+.read:active {
+    transform: translateY(2px);
+    background-color: var(--white2);
+    color: var(--blue);
 }
